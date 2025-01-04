@@ -1,23 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package org.example;
 
-/**
- *
- * @author Charly Ponce
- */
+package org.example.lexer;
+
 public enum Tokens {
-    Reservadas,
-    Igual,
-    Suma,
-    Resta,
-    Multiplicacion,
-    Division,
-    Identificador,
-    Numero,
-    ERROR,
-    Operacion
+    // KeyWords
+    DEFINE,
+    ENTITY,
+    VALIDATIONS,
+    AS,
+    FOR,
+    IS,
+    NOT,
+    NULL,
+    GREATER_THAN,
+    LESS_THAN,
+    EQUALS_TO,
+    UNIQUE,
+
+    // Data types
+    STRING,
+    INTEGER,
+    LONG,
+    BOOLEAN,
+    FLOAT,
+
+    // Identifiers
+    IDENTIFIER,
+
+    // Number
+    NUMBER,
+
+    // Symbols
+    LBRACE,  // {
+    RBRACE,  // }
+    LPAREN,  // (
+    RPAREN,  // )
+    SEMICOLON,  // ;
+    COMMA,  // ,
+    EQUALS,  // =
+
+    // Err
+    ERROR
 }
