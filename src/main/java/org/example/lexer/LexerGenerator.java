@@ -1,8 +1,8 @@
-package org.example;
+package org.example.lexer;
 
 public class LexerGenerator {
     public static void main(String[] args) {
-        String route = "/home/elpapucho/IdeaProjects/cienciasIII/src/main/java/org/example/DSL.flex";
+        String route = "/home/elpapucho/IdeaProjects/cienciasIII/src/main/java/org/example/lexer/DSL.flex";
         try {
             generateLexer(route);
         } catch (Exception e) {
