@@ -8,9 +8,9 @@ define UserClass as ENTITY {
     age as INTEGER
 }
 
-validations {
-    UserClass.name is not null
-    UserClass.age is greater than 15
+define validations for User {
+    name is not null,
+    age is greater_than 15
 }
 
 define UserRepository as REPOSITORY {
