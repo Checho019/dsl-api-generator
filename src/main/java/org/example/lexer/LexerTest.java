@@ -2,11 +2,11 @@ package org.example;
 
 import java.io.*;
 
-public class Prueba {
+public class LexerTest {
     public static void main(String[] args) throws IOException {
 
         Reader r = new BufferedReader(new StringReader("2 + 3 Variable % x ifS"));
-        Lexer lexer = new Lexer(r);
+        LexicalAnalyzer lexer = new LexicalAnalyzer(r);
 
         Tokens token = lexer.yylex();
         while (token != null) {

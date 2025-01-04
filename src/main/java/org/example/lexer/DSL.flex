@@ -1,7 +1,7 @@
 package org.example;
 import static org.example.Tokens.*;
 %%
-%class Lexer
+%class LexicalAnalyzer
 %type Tokens
 Letter=[a-zA-Z_]+
 Digit=[0-9]+
