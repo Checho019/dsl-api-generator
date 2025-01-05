@@ -3,28 +3,30 @@
 A Domain-Specific Language for creating a Spring Boot application using a high-level approach.
 General Approach:
 ```
-define UserClass as ENTITY {
-    name as STRING
-    age as INTEGER
+DEFINE User AS ENTITY {
+    name AS STRING,
+    age AS INTEGER,
 }
 
-define validations for User {
-    name is not null,
-    age is greater_than 15
+DEFINE VALIDATIONS FOR User {
+    name IS NOT NULL,
+    age IS GREATER_THAN 15
 }
 
-define UserRepository as REPOSITORY {
-    base-path: /users
-    methods: [GET, POST, PUT, DELETE]
+DEFINE CONTROLLER FOR User {
+    PATH: "/users",
+    METHODS: [GET, POST, PUT, DELETE]
 }
 
-define UserDTO as DTO with UserClass {
-    exclude: [age]
+DEFINE UserDTO AS DTO WITH User {
+    EXCLUDE: [age]
 }
 
-define OrderClass as ENTITY {
-    orderId as LONG
-    user as UserClass
+CONFIGURE DATASOURCE {
+    URL: "jdbc:mysql://localhost:3306/mydb",
+    USERNAME: "root",
+    PASSWORD: "password",
+    DRIVER: "com.mysql.cj.jdbc.Driver"
 }
 ```
 
