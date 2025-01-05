@@ -6,7 +6,6 @@ import java_cup.runtime.Symbol;
 %type java_cup.runtime.Symbol
 %unicode
 %cup
-%full
 %line
 %char
 %column

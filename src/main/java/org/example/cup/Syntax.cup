@@ -28,7 +28,7 @@ terminal DEFINE, AS, FOR,                                                       
          STRING, INTEGER, LONG, BOOLEAN, FLOAT,                                     // Data types
          IDENTIFIER,                                                                // Identifier
          NUMBER, STRING_LITERAL,                                                    // Data
-         LBRACE, RBRACE, LPAREN, RPAREN, LBRACKET, RBRACKET, COLON, COMMA, EQUALS;  // Symbols
+         LBRACE, RBRACE, LPAREN, RPAREN, LBRACKET, RBRACKET, COLON, COMMA, EQUALS, ERROR;  // Symbols
 
 non terminal Program;
 non terminal EntityDef, RelationshipDef, ValidationDef, ControllerDef, DTODef, ConfigureDef;
@@ -40,18 +40,17 @@ non terminal DatasourceURL, DatasourceUsername, DatasourcePassword, DatasourceDr
 // Begin
 start with Program;
 
-Program ::= EntityList RelationshipList ValidationList ControllerList DTOList ConfigureList | /* lambda */;
+Program ::= EntityList RelationshipList ValidationList ControllerList ConfigureList;
 
 EntityList ::= ValidationDef | EntityList EntityDef ;
-RelationshipList ::= RelationshipDef | RelationshipList RelationshipDef | /* lambda */;
-ValidationList ::= ValidationDef | ValidationList ValidationDef | /* lambda */;
-ControllerList ::= ControllerDef | ControllerList ControllerDef | /* lambda */;
-DTOList ::= DTODef | DTOList DTODef | /* lambda */;
-ConfigureList ::= ConfigureDef | ConfigureList ConfigureDef | /* lambda */;
+RelationshipList ::= RelationshipDef | RelationshipList RelationshipDef;
+ValidationList ::= ValidationDef | ValidationList ValidationDef;
+ControllerList ::= ControllerDef | ControllerList ControllerDef;
+ConfigureList ::= ConfigureDef | ConfigureList ConfigureDef;
 
 // Entity Definition
 EntityDef ::= DEFINE IDENTIFIER AS ENTITY LBRACE AttributeDef RBRACE;
-AttributeDef ::= IDENTIFIER AS DataType | AttributeDef COMMA AttributeDef;
+AttributeDef ::= IDENTIFIER AS DataType | IDENTIFIER AS DataType COMMA AttributeDef;
 DataType ::= STRING | INTEGER | LONG | BOOLEAN| FLOAT;
 
 // Relationship Definition
@@ -60,7 +59,7 @@ RelationshipType ::= ONE_TO_ONE | ONE_TO_MANY | MANY_TO_MANY;
 
 // Validations
 ValidationDef ::= DEFINE VALIDATIONS FOR IDENTIFIER LBRACE ValidationExpr RBRACE;
-ValidationExpr ::= IDENTIFIER IS Constrain | ValidationExpr COMMA ValidationExpr;
+ValidationExpr ::= IDENTIFIER IS Constrain | IDENTIFIER IS Constrain COMMA ValidationExpr;
 Constrain ::= Comparation | ID | NULL | UNIQUE | NOT Constrain;
 Comparation ::= GREATER_THAN NUMBER | LESS_THAN NUMBER | EQUALS_TO NUMBER;
 
@@ -76,7 +75,7 @@ HTTPVerb ::= GET | POST | PUT | DELETE;
 
 // Configuration
 ConfigureDef ::= CONFIGURE Configurable;
-Configurable ::= DATASOURCE LBRACE DatasourceExpr RBRACE;
+Configurable ::= DATASOURCE LBRACE DatasourceConf RBRACE;
 DatasourceConf ::= DatasourceURL COMMA DatasourceUsername COMMA DatasourcePassword COMMA DatasourceDriver;
 DatasourceURL ::= URL COLON STRING_LITERAL;
 DatasourceUsername ::= USERNAME COLON STRING_LITERAL;
