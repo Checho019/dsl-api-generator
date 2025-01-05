@@ -5,9 +5,14 @@ public enum Tokens {
     // KeyWords
     DEFINE,
     ENTITY,
+    CONTROLLER,
+    DTO,
     VALIDATIONS,
+    CONFIGURE,
+    DATASOURCE,
     AS,
     FOR,
+    WITH,
     IS,
     NOT,
     NULL,
@@ -15,6 +20,17 @@ public enum Tokens {
     LESS_THAN,
     EQUALS_TO,
     UNIQUE,
+    PATH,
+    METHODS,
+    GET,
+    POST,
+    PUT,
+    DELETE,
+    EXCLUDE,
+    URL,
+    USERNAME,
+    PASSWORD,
+    DRIVER,
 
     // Data types
     STRING,
@@ -34,7 +50,11 @@ public enum Tokens {
     RBRACE,  // }
     LPAREN,  // (
     RPAREN,  // )
-    SEMICOLON,  // ;
+    LBRACKET, // [
+    RBRACKET, // ]
+    SINGLE_QUOTE, // '
+    DOUBLE_QUOTE, // "
+    COLON,  // :
     COMMA,  // ,
     EQUALS,  // =
 

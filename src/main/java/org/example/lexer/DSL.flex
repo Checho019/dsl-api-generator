@@ -15,18 +15,35 @@ import static org.example.lexer.Tokens.*;
 %%
 
 // Keywords
-"define"                  { lexeme = yytext(); return DEFINE; }
-"entity"                  { lexeme = yytext(); return ENTITY; }
-"validations"             { lexeme = yytext(); return VALIDATIONS; }
-"as"                      { lexeme = yytext(); return AS; }
-"for"                     { lexeme = yytext(); return FOR; }
-"is"                      { lexeme = yytext(); return IS; }
-"not"                     { lexeme = yytext(); return NOT; }
-"null"                    { lexeme = yytext(); return NULL; }
-"greater_than"            { lexeme = yytext(); return GREATER_THAN; }
-"less_than"               { lexeme = yytext(); return LESS_THAN; }
-"equals_to"               { lexeme = yytext(); return EQUALS_TO; }
-"unique"                  { lexeme = yytext(); return UNIQUE; }
+"DEFINE"                  { lexeme = yytext(); return DEFINE; }
+"ENTITY"                  { lexeme = yytext(); return ENTITY; }
+"CONTROLLER"              { lexeme = yytext(); return CONTROLLER; }
+"DTO"                     { lexeme = yytext(); return DTO; }
+"VALIDATIONS"             { lexeme = yytext(); return VALIDATIONS; }
+"CONFIGURE"               { lexeme = yytext(); return CONFIGURE; }
+"DATASOURCE"              { lexeme = yytext(); return DATASOURCE; }
+"AS"                      { lexeme = yytext(); return AS; }
+"FOR"                     { lexeme = yytext(); return FOR; }
+"WITH"                    { lexeme = yytext(); return WITH; }
+"IS"                      { lexeme = yytext(); return IS; }
+"NOT"                     { lexeme = yytext(); return NOT; }
+"NULL"                    { lexeme = yytext(); return NULL; }
+"GREATER_THAN"            { lexeme = yytext(); return GREATER_THAN; }
+"LESS_THAN"               { lexeme = yytext(); return LESS_THAN; }
+"EQUALS_TO"               { lexeme = yytext(); return EQUALS_TO; }
+"UNIQUE"                  { lexeme = yytext(); return UNIQUE; }
+"PATH"                    { lexeme = yytext(); return PATH; }
+"METHODS"                 { lexeme = yytext(); return METHODS; }
+"GET"                     { lexeme = yytext(); return GET; }
+"POST"                    { lexeme = yytext(); return POST; }
+"PUT"                     { lexeme = yytext(); return PUT; }
+"DELETE"                  { lexeme = yytext(); return DELETE; }
+"EXCLUDE"                 { lexeme = yytext(); return EXCLUDE; }
+"URL"                     { lexeme = yytext(); return URL; }
+"USERNAME"                { lexeme = yytext(); return USERNAME; }
+"PASSWORD"                { lexeme = yytext(); return PASSWORD; }
+"DRIVER"                  { lexeme = yytext(); return DRIVER; }
+
 
 // Data type
 "STRING"                  { lexeme = yytext(); return STRING; }
@@ -47,7 +64,11 @@ import static org.example.lexer.Tokens.*;
 "}"                       { lexeme = yytext(); return RBRACE; }
 "("                       { lexeme = yytext(); return LPAREN; }
 ")"                       { lexeme = yytext(); return RPAREN; }
-";"                       { lexeme = yytext(); return SEMICOLON; }
+"["                       { lexeme = yytext(); return LBRACKET;}
+"]"                       { lexeme = yytext(); return RBRACKET;}
+"'"                       { lexeme = yytext(); return SINGLE_QUOTE;}
+"\""                      { lexeme = yytext(); return DOUBLE_QUOTE;}
+":"                       { lexeme = yytext(); return COLON; }
 ","                       { lexeme = yytext(); return COMMA; }
 "="                       { lexeme = yytext(); return EQUALS; }
 
