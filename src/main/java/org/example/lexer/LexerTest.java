@@ -5,14 +5,30 @@ import java.io.*;
 public class LexerTest {
     public static void main(String[] args) throws IOException {
         String dslTest = """
-            define User as ENTITY {
-                name as STRING,
-                age as INTEGER
+            DEFINE User AS ENTITY {
+                name AS STRING,
+                age AS INTEGER,
             }
 
-            define validations for User {
-                name is not null,
-                age is greater_than 15
+            DEFINE VALIDATIONS FOR User {
+                name IS NOT NULL,
+                age IS GREATER_THAN 15
+            }
+
+            DEFINE CONTROLLER FOR User {
+                 PATH: "/users",
+                 METHODS: [GET, POST, PUT, DELETE]
+            }
+
+            DEFINE UserDTO AS DTO WITH User {
+                  EXCLUDE: [age]
+            }
+
+            CONFIGURE DATASOURCE {
+                  URL: "jdbc:mysql://localhost:3306/mydb",
+                  USERNAME: "root",
+                  PASSWORD: "password",
+                  DRIVER: "com.mysql.cj.jdbc.Driver"
             }
         """;
 

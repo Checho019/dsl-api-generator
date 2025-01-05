@@ -68,8 +68,6 @@ import static org.example.lexer.Tokens.*;
 ")"                       { lexeme = yytext(); return RPAREN; }
 "["                       { lexeme = yytext(); return LBRACKET;}
 "]"                       { lexeme = yytext(); return RBRACKET;}
-"'"                       { lexeme = yytext(); return SINGLE_QUOTE;}
-"\""                      { lexeme = yytext(); return DOUBLE_QUOTE;}
 ":"                       { lexeme = yytext(); return COLON; }
 ","                       { lexeme = yytext(); return COMMA; }
 "="                       { lexeme = yytext(); return EQUALS; }

@@ -53,8 +53,6 @@ public enum Tokens {
     RPAREN,  // )
     LBRACKET, // [
     RBRACKET, // ]
-    SINGLE_QUOTE, // '
-    DOUBLE_QUOTE, // "
     COLON,  // :
     COMMA,  // ,
     EQUALS,  // =
