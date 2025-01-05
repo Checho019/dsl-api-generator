@@ -32,6 +32,12 @@ import static org.example.lexer.Tokens.*;
 "LESS_THAN"               { lexeme = yytext(); return LESS_THAN; }
 "EQUALS_TO"               { lexeme = yytext(); return EQUALS_TO; }
 "UNIQUE"                  { lexeme = yytext(); return UNIQUE; }
+"ID"                      { lexeme = yytext(); return ID; }
+"RELATIONSHIP"            { lexeme = yytext(); return RELATIONSHIP; }
+"TO"                      { lexeme = yytext(); return TO; }
+"ONE_TO_ONE"              { lexeme = yytext(); return ONE_TO_ONE; }
+"ONE_TO_MANY"             { lexeme = yytext(); return ONE_TO_MANY; }
+"MANY_TO_MANY"            { lexeme = yytext(); return MANY_TO_MANY; }
 "PATH"                    { lexeme = yytext(); return PATH; }
 "METHODS"                 { lexeme = yytext(); return METHODS; }
 "GET"                     { lexeme = yytext(); return GET; }
