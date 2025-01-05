@@ -6,13 +6,29 @@ public class LexerTest {
     public static void main(String[] args) throws IOException {
         String dslTest = """
             DEFINE User AS ENTITY {
+                user_id AS INTEGER,
                 name AS STRING,
                 age AS INTEGER,
             }
 
+            DEFINE Pet AS ENTITY {
+                pet_id AS INTEGER,
+                name AS STRING,
+                animal AS STRING,
+            }
+
+            DEFINE RELATIONSHIP User TO Pet IS ONE_TO_MANY
+
             DEFINE VALIDATIONS FOR User {
+                user_id IS ID,
                 name IS NOT NULL,
                 age IS GREATER_THAN 15
+            }
+
+            DEFINE VALIDATIONS FOR Pet {
+                pet_id IS ID,
+                name IS NOT NULL,
+                animal IS NOT NULL
             }
 
             DEFINE CONTROLLER FOR User {
@@ -20,8 +36,9 @@ public class LexerTest {
                  METHODS: [GET, POST, PUT, DELETE]
             }
 
-            DEFINE UserDTO AS DTO WITH User {
-                  EXCLUDE: [age]
+            DEFINE CONTROLLER FOR Pet {
+                 PATH: "/pets",
+                 METHODS: [GET, POST, DELETE]
             }
 
             CONFIGURE DATASOURCE {
