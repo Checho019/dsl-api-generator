@@ -1,0 +1,84 @@
+package org.example.cup;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s;
+
+    @Override
+    public void syntax_error(Symbol s) {
+        this.s = s;
+        System.err.println("Syntax error at line " + s.left + ", column " + s.right + ": " + s.value);
+    }
+
+    public Symbol getSymbol() {
+        return this.s;
+    }
+:};
+
+terminal DEFINE, AS, FOR,                                                           // Definition
+         ENTITY, CONTROLLER, DTO, VALIDATIONS, CONFIGURE, RELATIONSHIP,             // Definable
+         DATASOURCE,                                                                // Configurable
+         IS, NOT, NULL, GREATER_THAN, LESS_THAN, EQUALS_TO, UNIQUE, ID,             // Constrains
+         ONE_TO_ONE, ONE_TO_MANY, MANY_TO_MANY, TO,                                 // Relationship
+         PATH, METHODS, GET, POST, PUT, DELETE,                                     // Controller Definition
+         WITH, EXCLUDE,                                                             // DTO Definition
+         URL, USERNAME, PASSWORD, DRIVER,                                           // Datasource Configuration
+         STRING, INTEGER, LONG, BOOLEAN, FLOAT,                                     // Data types
+         IDENTIFIER,                                                                // Identifier
+         NUMBER, STRING_LITERAL,                                                    // Data
+         LBRACE, RBRACE, LPAREN, RPAREN, LBRACKET, RBRACKET, COLON, COMMA, EQUALS;  // Symbols
+
+non terminal Program;
+non terminal EntityDef, RelationshipDef, ValidationDef, ControllerDef, DTODef, ConfigureDef;
+non terminal EntityList, RelationshipList, ValidationList, ControllerList, DTOList, ConfigureList;
+non terminal AttributeDef, ValidationExpr, ControllerExpr, ControllerPath, ControllerMethods, VerbList, Configurable;
+non terminal DataType, Constrain, RelationshipType, Comparation, HTTPVerb, DatasourceConf;
+non terminal DatasourceURL, DatasourceUsername, DatasourcePassword, DatasourceDriver;
+
+// Begin
+start with Program;
+
+Program ::= EntityList RelationshipList ValidationList ControllerList DTOList ConfigureList | /* lambda */;
+
+EntityList ::= ValidationDef | EntityList EntityDef ;
+RelationshipList ::= RelationshipDef | RelationshipList RelationshipDef | /* lambda */;
+ValidationList ::= ValidationDef | ValidationList ValidationDef | /* lambda */;
+ControllerList ::= ControllerDef | ControllerList ControllerDef | /* lambda */;
+DTOList ::= DTODef | DTOList DTODef | /* lambda */;
+ConfigureList ::= ConfigureDef | ConfigureList ConfigureDef | /* lambda */;
+
+// Entity Definition
+EntityDef ::= DEFINE IDENTIFIER AS ENTITY LBRACE AttributeDef RBRACE;
+AttributeDef ::= IDENTIFIER AS DataType | AttributeDef COMMA AttributeDef;
+DataType ::= STRING | INTEGER | LONG | BOOLEAN| FLOAT;
+
+// Relationship Definition
+RelationshipDef ::= DEFINE RELATIONSHIP IDENTIFIER TO IDENTIFIER IS RelationshipType;
+RelationshipType ::= ONE_TO_ONE | ONE_TO_MANY | MANY_TO_MANY;
+
+// Validations
+ValidationDef ::= DEFINE VALIDATIONS FOR IDENTIFIER LBRACE ValidationExpr RBRACE;
+ValidationExpr ::= IDENTIFIER IS Constrain | ValidationExpr COMMA ValidationExpr;
+Constrain ::= Comparation | ID | NULL | UNIQUE | NOT Constrain;
+Comparation ::= GREATER_THAN NUMBER | LESS_THAN NUMBER | EQUALS_TO NUMBER;
+
+// Controller Definition
+ControllerDef ::= DEFINE CONTROLLER FOR IDENTIFIER LBRACE ControllerExpr RBRACE;
+ControllerExpr ::= ControllerPath COMMA ControllerMethods;
+ControllerPath ::= PATH COLON STRING_LITERAL;
+ControllerMethods ::= METHODS COLON LBRACKET VerbList RBRACKET;
+VerbList ::= HTTPVerb | HTTPVerb COMMA VerbList;
+HTTPVerb ::= GET | POST | PUT | DELETE;
+
+// DTOs not allowed
+
+// Configuration
+ConfigureDef ::= CONFIGURE Configurable;
+Configurable ::= DATASOURCE LBRACE DatasourceExpr RBRACE;
+DatasourceConf ::= DatasourceURL COMMA DatasourceUsername COMMA DatasourcePassword COMMA DatasourceDriver;
+DatasourceURL ::= URL COLON STRING_LITERAL;
+DatasourceUsername ::= USERNAME COLON STRING_LITERAL;
+DatasourcePassword ::= PASSWORD COLON STRING_LITERAL;
+DatasourceDriver ::= DRIVER COLON STRING_LITERAL;
