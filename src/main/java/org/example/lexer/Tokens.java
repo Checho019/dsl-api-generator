@@ -2,17 +2,23 @@
 package org.example.lexer;
 
 public enum Tokens {
-    // KeyWords
+    // Definition
     DEFINE,
+    AS,
+    FOR,
+
+    // Definable
     ENTITY,
     CONTROLLER,
     DTO,
     VALIDATIONS,
     CONFIGURE,
+    RELATIONSHIP,
+
+    // Configurable
     DATASOURCE,
-    AS,
-    FOR,
-    WITH,
+
+    // Constrains
     IS,
     NOT,
     NULL,
@@ -21,18 +27,26 @@ public enum Tokens {
     EQUALS_TO,
     UNIQUE,
     ID,
-    RELATIONSHIP,
+
+    // Relationship
     ONE_TO_ONE,
     ONE_TO_MANY,
     MANY_TO_MANY,
     TO,
+
+    // Controller Definition
     PATH,
     METHODS,
     GET,
     POST,
     PUT,
     DELETE,
+
+    // DTO Definition
+    WITH,
     EXCLUDE,
+
+    // Datasource Configuration
     URL,
     USERNAME,
     PASSWORD,
