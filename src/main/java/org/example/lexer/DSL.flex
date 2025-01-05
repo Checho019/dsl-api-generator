@@ -55,9 +55,11 @@ import static org.example.lexer.Tokens.*;
 // Identifier
 [a-zA-Z_][a-zA-Z0-9_]*    { lexeme = yytext(); return IDENTIFIER; }
 
-// Numbers
+// Data
 ("-"?[0-9]+)               { lexeme = yytext(); return NUMBER; }
 ("-"?[0-9]+\\.[0-9]+)      { lexeme = yytext(); return NUMBER; }
+\"([^\\\"]|\\.)*\"         { lexeme = yytext().substring(1, yytext().length() - 1); return STRING_LITERAL; }
+\'([^\\\']|\\.)*\'         { lexeme = yytext().substring(1, yytext().length() - 1); return STRING_LITERAL; }
 
 // Symbols
 "{"                       { lexeme = yytext(); return LBRACE; }

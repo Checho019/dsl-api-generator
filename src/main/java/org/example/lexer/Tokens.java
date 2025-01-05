@@ -42,8 +42,9 @@ public enum Tokens {
     // Identifiers
     IDENTIFIER,
 
-    // Number
+    // Data
     NUMBER,
+    STRING_LITERAL,
 
     // Symbols
     LBRACE,  // {
