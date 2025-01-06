@@ -52,7 +52,6 @@ Some observations:
 - Add a section for entity validations
 - Add a section for data source specifications
 - Include HTTP verbs in the controller section
-- Define DTOs using _exclude_ clause
 - Define entity relations
 
 Libraries:
