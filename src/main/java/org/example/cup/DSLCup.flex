@@ -2,16 +2,16 @@ package org.example.cup;
 import java_cup.runtime.Symbol;
 
 %%
-%class LexerCup
+%class DSLCup
 %type java_cup.runtime.Symbol
-%unicode
 %cup
+%full
 %line
 %char
-%column
+
 
 %{
-    private Symbol symbol(int type, Object value){
+    private Symbol symbol(int type, String value){
       return new Symbol(type, yyline, yycolumn, value);
     }
 
@@ -67,7 +67,7 @@ import java_cup.runtime.Symbol;
 "BOOLEAN"                 { return symbol(sym.BOOLEAN); }
 
 // Identifier
-[a-zA-Z_][a-zA-Z0-9_]*    { return symbol(sym.IDENTIFIER, yytext()); }
+[a-zA-Z_][a-zA-Z0-9_]*    {return symbol(sym.IDENTIFIER, yytext());}
 
 // Data
 ("-"?[0-9]+)               { return symbol(sym.NUMBER, yytext()); }

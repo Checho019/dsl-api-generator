@@ -31,8 +31,7 @@ terminal DEFINE, AS, FOR,                                                       
          LBRACE, RBRACE, LPAREN, RPAREN, LBRACKET, RBRACKET, COLON, COMMA, EQUALS, ERROR;  // Symbols
 
 non terminal Program;
-non terminal EntityDef, RelationshipDef, ValidationDef, ControllerDef, DTODef, ConfigureDef;
-non terminal EntityList, RelationshipList, ValidationList, ControllerList, DTOList, ConfigureList;
+non terminal Definition, DefinitionList, EntityDef, RelationshipDef, ValidationDef, ControllerDef, ConfigureDef;
 non terminal AttributeDef, ValidationExpr, ControllerExpr, ControllerPath, ControllerMethods, VerbList, Configurable;
 non terminal DataType, Constrain, RelationshipType, Comparation, HTTPVerb, DatasourceConf;
 non terminal DatasourceURL, DatasourceUsername, DatasourcePassword, DatasourceDriver;
@@ -40,13 +39,10 @@ non terminal DatasourceURL, DatasourceUsername, DatasourcePassword, DatasourceDr
 // Begin
 start with Program;
 
-Program ::= EntityList RelationshipList ValidationList ControllerList ConfigureList;
+Program ::= DefinitionList;
 
-EntityList ::= ValidationDef | EntityList EntityDef ;
-RelationshipList ::= RelationshipDef | RelationshipList RelationshipDef;
-ValidationList ::= ValidationDef | ValidationList ValidationDef;
-ControllerList ::= ControllerDef | ControllerList ControllerDef;
-ConfigureList ::= ConfigureDef | ConfigureList ConfigureDef;
+DefinitionList ::= Definition | Definition DefinitionList;
+Definition ::= EntityDef | RelationshipDef | ValidationDef | ControllerDef | ConfigureDef;
 
 // Entity Definition
 EntityDef ::= DEFINE IDENTIFIER AS ENTITY LBRACE AttributeDef RBRACE;
@@ -70,8 +66,6 @@ ControllerPath ::= PATH COLON STRING_LITERAL;
 ControllerMethods ::= METHODS COLON LBRACKET VerbList RBRACKET;
 VerbList ::= HTTPVerb | HTTPVerb COMMA VerbList;
 HTTPVerb ::= GET | POST | PUT | DELETE;
-
-// DTOs not allowed
 
 // Configuration
 ConfigureDef ::= CONFIGURE Configurable;
