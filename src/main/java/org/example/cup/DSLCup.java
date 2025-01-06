@@ -7,7 +7,7 @@ import java_cup.runtime.Symbol;
 
 
 @SuppressWarnings("fallthrough")
-class LexerCup implements java_cup.runtime.Scanner {
+class DSLCup implements java_cup.runtime.Scanner {
 
   /** This character denotes the end of file. */
   public static final int YYEOF = -1;
@@ -29,66 +29,26 @@ class LexerCup implements java_cup.runtime.Scanner {
   };
 
   /**
-   * Top-level table for translating characters to character classes
+   * Translates characters to character classes
    */
-  private static final int [] ZZ_CMAP_TOP = zzUnpackcmap_top();
-
-  private static final String ZZ_CMAP_TOP_PACKED_0 =
-    "\1\0\37\u0100\1\u0200\267\u0100\10\u0300\u1020\u0100";
-
-  private static int [] zzUnpackcmap_top() {
-    int [] result = new int[4352];
-    int offset = 0;
-    offset = zzUnpackcmap_top(ZZ_CMAP_TOP_PACKED_0, offset, result);
-    return result;
-  }
-
-  private static int zzUnpackcmap_top(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
-    int l = packed.length();
-    while (i < l) {
-      int count = packed.charAt(i++);
-      int value = packed.charAt(i++);
-      do result[j++] = value; while (--count > 0);
-    }
-    return j;
-  }
-
-
-  /**
-   * Second-level tables for translating characters to character classes
-   */
-  private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
-
-  private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\1\1\1\2\2\3\1\2\22\0\1\1\1\0"+
-    "\1\4\4\0\1\5\1\6\1\7\2\0\1\10\1\11"+
-    "\1\0\1\12\12\13\1\14\2\0\1\15\3\0\1\16"+
-    "\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26"+
-    "\2\27\1\30\1\31\1\32\1\33\1\34\1\35\1\36"+
-    "\1\37\1\40\1\41\1\42\1\43\1\44\1\45\1\27"+
-    "\1\46\1\47\1\50\1\0\1\51\1\0\32\27\1\52"+
-    "\1\0\1\53\7\0\1\3\u01a2\0\2\3\326\0\u0100\3";
-
-  private static int [] zzUnpackcmap_blocks() {
-    int [] result = new int[1024];
-    int offset = 0;
-    offset = zzUnpackcmap_blocks(ZZ_CMAP_BLOCKS_PACKED_0, offset, result);
-    return result;
-  }
-
-  private static int zzUnpackcmap_blocks(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
-    int l = packed.length();
-    while (i < l) {
-      int count = packed.charAt(i++);
-      int value = packed.charAt(i++);
-      do result[j++] = value; while (--count > 0);
-    }
-    return j;
-  }
+  private static final char [] ZZ_CMAP = {
+     0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  2,  3,  3,  2,  0,  0, 
+     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
+     1,  0,  4,  0,  0,  0,  0,  5,  6,  7,  0,  0,  8,  9,  0, 10, 
+    11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12,  0,  0, 13,  0,  0, 
+     0, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 23, 24, 25, 26, 27, 
+    28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 23, 38, 39, 40,  0, 41, 
+     0, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 
+    23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 42,  0, 43,  0,  0, 
+     0,  0,  0,  0,  0,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
+     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
+     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
+     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
+     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
+     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
+     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 
+     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
+  };
 
   /**
    * Translates DFA states to action switch labels.
@@ -492,6 +452,7 @@ class LexerCup implements java_cup.runtime.Scanner {
   private int yyline;
 
   /** Number of characters from the last newline up to the start of the matched text. */
+  @SuppressWarnings("unused")
   private int yycolumn;
 
   /** Number of characters up to the start of the matched text. */
@@ -505,7 +466,7 @@ class LexerCup implements java_cup.runtime.Scanner {
   private boolean zzEOFDone;
 
   /* user code: */
-    private Symbol symbol(int type, Object value){
+    private Symbol symbol(int type, String value){
       return new Symbol(type, yyline, yycolumn, value);
     }
 
@@ -519,7 +480,7 @@ class LexerCup implements java_cup.runtime.Scanner {
    *
    * @param   in  the java.io.Reader to read input from.
    */
-  LexerCup(java.io.Reader in) {
+  DSLCup(java.io.Reader in) {
     this.zzReader = in;
   }
 
@@ -538,8 +499,7 @@ class LexerCup implements java_cup.runtime.Scanner {
    * Translates raw input code points to DFA table row
    */
   private static int zzCMap(int input) {
-    int offset = input & 255;
-    return offset == input ? ZZ_CMAP_BLOCKS[offset] : ZZ_CMAP_BLOCKS[ZZ_CMAP_TOP[input >> 8] | offset];
+    return ZZ_CMAP[input];
   }
 
   /**
@@ -830,12 +790,10 @@ class LexerCup implements java_cup.runtime.Scanner {
         case '\u2028':  // fall through
         case '\u2029':
           yyline++;
-          yycolumn = 0;
           zzR = false;
           break;
         case '\r':
           yyline++;
-          yycolumn = 0;
           zzR = true;
           break;
         case '\n':
@@ -843,12 +801,10 @@ class LexerCup implements java_cup.runtime.Scanner {
             zzR = false;
           else {
             yyline++;
-            yycolumn = 0;
           }
           break;
         default:
           zzR = false;
-          yycolumn += zzCharCount;
         }
       }
 

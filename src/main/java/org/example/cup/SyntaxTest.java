@@ -1,9 +1,11 @@
-package org.example.lexer;
+package org.example.cup;
 
-import java.io.*;
+import java_cup.runtime.Symbol;
 
-public class LexerTest {
-    public static void main(String[] args) throws IOException {
+import java.io.StringReader;
+
+public class SyntaxTest {
+    public static void main(String[] args) {
         String dslTest = """
             DEFINE User AS ENTITY {
                 user_id AS INTEGER,
@@ -49,17 +51,15 @@ public class LexerTest {
             }
         """;
 
-        Reader r = new BufferedReader(new StringReader(dslTest));
-        LexicalAnalyzer lexer = new LexicalAnalyzer(r);
-        Tokens token;
-        StringBuilder sb = new StringBuilder();
-        while ((token = lexer.yylex()) != null) {
-            sb.append("Token: ");
-            sb.append(token);
-            sb.append(" --> ");
-            sb.append(lexer.lexeme);
-            System.out.println(sb);
-            sb.setLength(0);
+        Syntax syntax = new Syntax(new DSLCup(new StringReader(dslTest)));
+        try {
+            syntax.parse();
+            System.out.println("Syntax test passed.");
+        } catch (Exception e) {
+            Symbol s = syntax.getSymbol();
+            System.out.println("Error in line: " + (s.right + 1) + " Column: " + (s.left + 1) + " Value: " + s.value);
+            System.out.println("s.sym = " + sym.terminalNames[s.sym]);
         }
+
     }
 }
