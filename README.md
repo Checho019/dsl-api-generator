@@ -6,13 +6,13 @@ General Approach:
 DEFINE User AS ENTITY {
     user_id AS INTEGER,
     name AS STRING,
-    age AS INTEGER,
+    age AS INTEGER
 }
 
 DEFINE Pet AS ENTITY {
     pet_id AS INTEGER,
     name AS STRING,
-    animal AS STRING,
+    animal AS STRING
 }
 
 DEFINE RELATIONSHIP User TO Pet IS ONE_TO_MANY
@@ -37,10 +37,6 @@ DEFINE CONTROLLER FOR User {
 DEFINE CONTROLLER FOR Pet {
     PATH: "/pets",
     METHODS: [GET, POST, DELETE]
-}
-
-DEFINE UserDTO AS DTO WITH User {
-    EXCLUDE: [age]
 }
 
 CONFIGURE DATASOURCE {
