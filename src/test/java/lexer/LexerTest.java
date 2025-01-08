@@ -6,7 +6,8 @@ import org.example.lexer.Tokens;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
 import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -104,16 +105,20 @@ public class LexerTest {
     }
 
     private void compareTokens(Dictionary<String, Tokens> lexerResul) {
-        assertEquals("The size of the dictionaries are´t the same", expectedTokens.size(), lexerResul.size());
+        assertThat("The size of the dictionaries aren't the same", lexerResul.size(), equalTo(expectedTokens.size()));
 
         Iterator<String> keysIterator = expectedTokens.keys().asIterator();
         while (keysIterator.hasNext()) {
             String lexeme = keysIterator.next();
             Tokens expected = expectedTokens.get(lexeme);
             Tokens actual = lexerResul.get(lexeme);
-            if (!expected.equals(actual)) {
-                throw new AssertionError("Token error: " + lexeme + " is not " + actual);
-            }
+            assertEquals("Token error: " + lexeme + " is not " + actual, expected, actual);
+        }
+
+        keysIterator = expectedTokens.keys().asIterator();
+        while (keysIterator.hasNext()) {
+            String lexeme = keysIterator.next();
+            assertNotNull("Unexpected token: " + lexeme, lexerResul.get(lexeme));
         }
     }
 
