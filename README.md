@@ -59,3 +59,4 @@ Libraries:
 - JCup v11b-20160615
 
 Change Variable Regex "\b"
+Delete DTO and Relationship (temp)
