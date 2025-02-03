@@ -58,5 +58,9 @@ Libraries:
 - JFlex v1.9.1
 - JCup v11b-20160615
 
-Change Variable Regex "\b"
-Delete DTO and Relationship (temp)
+Change Variable Regex "\b" <br>
+Delete DTO and Relationship (temp) <br>
+Connect with GASB <br>
+
+
+
