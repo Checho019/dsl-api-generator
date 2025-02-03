@@ -61,6 +61,7 @@ Libraries:
 Change Variable Regex "\b" <br>
 Delete DTO and Relationship (temp) <br>
 Connect with GASB <br>
+Change Controller definition (Based in JPA methods) <br>
 
 
 
