@@ -2,8 +2,10 @@ package org.example.lexer;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.List;
 
 public class LexerFacade {
 
@@ -12,16 +14,16 @@ public class LexerFacade {
      * @return Dictionary <\Token, String> where String is the lexeme
      * @throws IOException Using StringReader
      */
-    public Dictionary<String, Tokens> lex(String input) throws IOException {
+    public List<Token> lex(String input) throws IOException {
         LexicalAnalyzer lexer = new LexicalAnalyzer(new StringReader(input));
-        Dictionary<String, Tokens> dictionary = new Hashtable<>();
+        List<Token> tokens = new ArrayList<>();
         Tokens token;
 
         while ((token = lexer.yylex()) != null) {
-            dictionary.put(lexer.lexeme, token);
+            tokens.add(new Token(lexer.lexeme, token));
         }
 
-        return dictionary;
+        return tokens;
     }
 
 }
