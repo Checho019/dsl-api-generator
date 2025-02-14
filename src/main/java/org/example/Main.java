@@ -5,10 +5,7 @@ import org.example.cup.SyntaxFacade;
 import org.example.cup.sym;
 import org.example.lexer.LexerFacade;
 import org.example.lexer.Token;
-import org.example.lexer.Tokens;
 
-import java.util.Dictionary;
-import java.util.Iterator;
 import java.util.List;
 
 public class Main {
@@ -19,47 +16,46 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         String dslTest = """
-            DEFINE User AS ENTITY {
-                user_id AS INTEGER,
-                name AS STRING,
+            ENTITY User {
+                user_id AS INTEGER
+                name AS STRING
                 age AS INTEGER
             }
 
-            DEFINE Pet AS ENTITY {
-                pet_id AS INTEGER,
-                name AS STRING,
-                animal AS STRING
-            }
-
             // DEFINE RELATIONSHIP User TO Pet IS ONE_TO_MANY
+            // Not implemented yet
 
-            DEFINE VALIDATIONS FOR User {
-                user_id IS ID,
+            VALIDATIONS FOR User {
+                user_id IS UNIQUE,
                 name IS NOT NULL,
                 age IS GREATER_THAN 15
             }
 
-            DEFINE VALIDATIONS FOR Pet {
-                pet_id IS ID,
-                name IS NOT NULL,
+            VALIDATIONS FOR Pet {
+                pet_id IS ID
+                name IS NOT NULL
                 animal IS NOT NULL
             }
 
-            DEFINE CONTROLLER FOR User {
-                 PATH: "/users",
-                 METHODS: [GET, POST, PUT, DELETE]
+            // CRUD FOR User
+            CONTROLLER FOR User {
+                GET_BY_ID // Default
+                GET_ALL // DEFAULT
+                UPDATE // DEFAULT
+                SAVE // DEFAULT
+                DELETE // DEFAULT
+                // JPA
+                GET_BY user_id
+                GET_BY name
+                GET_BY user_id AND name
             }
 
-            DEFINE CONTROLLER FOR Pet {
-                 PATH: "/pets",
-                 METHODS: [GET, POST, DELETE]
-            }
-
-            CONFIGURE DATASOURCE {
-                  URL: "jdbc:mysql://localhost:3306/mydb",
-                  USERNAME: "root",
-                  PASSWORD: "password",
-                  DRIVER: "com.mysql.cj.jdbc.Driver"
+            DATASOURCE {
+                DBMS IS POSTGRESQL
+                IP IS "localhost"
+                DATABASE IS "mydb"
+                USERNAME IS "root"
+                PASSWORD IS "password"
             }
         """;
 
