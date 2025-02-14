@@ -13,43 +13,50 @@ import static org.example.lexer.Tokens.*;
 %}
 
 %%
-
-// Keywords
-"DEFINE"                  { lexeme = yytext(); return DEFINE; }
-"ENTITY"                  { lexeme = yytext(); return ENTITY; }
-"CONTROLLER"              { lexeme = yytext(); return CONTROLLER; }
-"DTO"                     { lexeme = yytext(); return DTO; }
-"VALIDATIONS"             { lexeme = yytext(); return VALIDATIONS; }
-"CONFIGURE"               { lexeme = yytext(); return CONFIGURE; }
-"DATASOURCE"              { lexeme = yytext(); return DATASOURCE; }
+/*
+Keywords
+ */
+// Definition
 "AS"                      { lexeme = yytext(); return AS; }
 "FOR"                     { lexeme = yytext(); return FOR; }
-"WITH"                    { lexeme = yytext(); return WITH; }
 "IS"                      { lexeme = yytext(); return IS; }
+
+// Definable
+"ENTITY"                  { lexeme = yytext(); return ENTITY; }
+"CONTROLLER"              { lexeme = yytext(); return CONTROLLER; }
+"CRUD"                    { lexeme = yytext(); return CRUD; }
+"VALIDATIONS"             { lexeme = yytext(); return VALIDATIONS; }
+"DATASOURCE"              { lexeme = yytext(); return DATASOURCE; }
+
+// Constrains
 "NOT"                     { lexeme = yytext(); return NOT; }
 "NULL"                    { lexeme = yytext(); return NULL; }
+"EMPTY"                   { lexeme = yytext(); return EMPTY; }
 "GREATER_THAN"            { lexeme = yytext(); return GREATER_THAN; }
 "LESS_THAN"               { lexeme = yytext(); return LESS_THAN; }
 "EQUALS_TO"               { lexeme = yytext(); return EQUALS_TO; }
 "UNIQUE"                  { lexeme = yytext(); return UNIQUE; }
-"ID"                      { lexeme = yytext(); return ID; }
-"RELATIONSHIP"            { lexeme = yytext(); return RELATIONSHIP; }
-"TO"                      { lexeme = yytext(); return TO; }
-"ONE_TO_ONE"              { lexeme = yytext(); return ONE_TO_ONE; }
-"ONE_TO_MANY"             { lexeme = yytext(); return ONE_TO_MANY; }
-"MANY_TO_MANY"            { lexeme = yytext(); return MANY_TO_MANY; }
-"PATH"                    { lexeme = yytext(); return PATH; }
-"METHODS"                 { lexeme = yytext(); return METHODS; }
-"GET"                     { lexeme = yytext(); return GET; }
-"POST"                    { lexeme = yytext(); return POST; }
-"PUT"                     { lexeme = yytext(); return PUT; }
+
+// Controller
+// CRUD
+"GET_BY_ID"               { lexeme = yytext(); return GET_BY_ID; }
+"GET_ALL"                 { lexeme = yytext(); return GET_ALL; }
+"UPDATE"                  { lexeme = yytext(); return UPDATE; }
 "DELETE"                  { lexeme = yytext(); return DELETE; }
-"EXCLUDE"                 { lexeme = yytext(); return EXCLUDE; }
-"URL"                     { lexeme = yytext(); return URL; }
+"SAVE"                    { lexeme = yytext(); return SAVE; }
+// JPA
+"GET_BY"                  { lexeme = yytext(); return GET_BY; }
+"AND"                     { lexeme = yytext(); return AND; }
+
+// Datasource
+"DBMS"                    { lexeme = yytext(); return DBMS; }
+"IP"                      { lexeme = yytext(); return IP; }
+"DATABASE"                { lexeme = yytext(); return DATABASE; }
 "USERNAME"                { lexeme = yytext(); return USERNAME; }
 "PASSWORD"                { lexeme = yytext(); return PASSWORD; }
-"DRIVER"                  { lexeme = yytext(); return DRIVER; }
 
+// DBMS
+("POSTGRESQL")            { lexeme = yytext(); return DBMS_SERVER; }
 
 // Data type
 "STRING"                  { lexeme = yytext(); return STRING; }
@@ -71,13 +78,6 @@ import static org.example.lexer.Tokens.*;
 // Symbols
 "{"                       { lexeme = yytext(); return LBRACE; }
 "}"                       { lexeme = yytext(); return RBRACE; }
-"("                       { lexeme = yytext(); return LPAREN; }
-")"                       { lexeme = yytext(); return RPAREN; }
-"["                       { lexeme = yytext(); return LBRACKET;}
-"]"                       { lexeme = yytext(); return RBRACKET;}
-":"                       { lexeme = yytext(); return COLON; }
-","                       { lexeme = yytext(); return COMMA; }
-"="                       { lexeme = yytext(); return EQUALS; }
 
 // Ignore
 [ \t\r\n]+                { /* Spaces */ }
