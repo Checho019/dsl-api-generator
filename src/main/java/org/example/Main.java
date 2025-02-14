@@ -4,10 +4,12 @@ import java_cup.runtime.Symbol;
 import org.example.cup.SyntaxFacade;
 import org.example.cup.sym;
 import org.example.lexer.LexerFacade;
+import org.example.lexer.Token;
 import org.example.lexer.Tokens;
 
 import java.util.Dictionary;
 import java.util.Iterator;
+import java.util.List;
 
 public class Main {
 
@@ -29,7 +31,7 @@ public class Main {
                 animal AS STRING
             }
 
-            DEFINE RELATIONSHIP User TO Pet IS ONE_TO_MANY
+            // DEFINE RELATIONSHIP User TO Pet IS ONE_TO_MANY
 
             DEFINE VALIDATIONS FOR User {
                 user_id IS ID,
@@ -62,8 +64,10 @@ public class Main {
         """;
 
         // Lexical Analysis
-        Dictionary<String, Tokens> lexerResult = lexerFacade.lex(dslTest);
-        printTokens(lexerResult);
+        List<Token> lexerResult = lexerFacade.lex(dslTest);
+        for (Token token : lexerResult) {
+            System.out.println(token.toString());
+        }
         System.out.println();
 
         // Syntactic Analysis
@@ -74,15 +78,6 @@ public class Main {
             Symbol s = syntaxFacade.syntax.getSymbol();
             System.out.println("Error in line: " + (s.right + 1) + " Column: " + (s.left + 1) + " Value: " + s.value);
             System.out.println("s.sym = " + sym.terminalNames[s.sym]);
-        }
-    }
-
-    public static void printTokens(Dictionary<String, Tokens> lexerResult) {
-        Iterator<String> keysIterator = lexerResult.keys().asIterator();
-        while (keysIterator.hasNext()) {
-            String lexeme = keysIterator.next();
-            Tokens tokens = lexerResult.get(lexeme);
-            System.out.println(lexeme + " => " + tokens);
         }
     }
 }
