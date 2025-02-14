@@ -3,54 +3,46 @@ package org.example.lexer;
 
 public enum Tokens {
     // Definition
-    DEFINE,
     AS,
     FOR,
+    IS,
 
     // Definable
     ENTITY,
     CONTROLLER,
-    DTO,
+    CRUD,
     VALIDATIONS,
-    CONFIGURE,
-    RELATIONSHIP,
-
-    // Configurable
     DATASOURCE,
 
     // Constrains
-    IS,
     NOT,
     NULL,
+    EMPTY,
     GREATER_THAN,
     LESS_THAN,
     EQUALS_TO,
     UNIQUE,
-    ID,
 
-    // Relationship
-    ONE_TO_ONE,
-    ONE_TO_MANY,
-    MANY_TO_MANY,
-    TO,
-
-    // Controller Definition
-    PATH,
-    METHODS,
-    GET,
-    POST,
-    PUT,
+    // Controller
+    // CRUD
+    GET_BY_ID,
+    GET_ALL,
+    UPDATE,
     DELETE,
+    SAVE,
+    // JPA
+    GET_BY,
+    AND,
 
-    // DTO Definition
-    WITH,
-    EXCLUDE,
-
-    // Datasource Configuration
-    URL,
+    // Datasource
+    DBMS,
+    IP,
+    DATABASE,
     USERNAME,
     PASSWORD,
-    DRIVER,
+
+    // DBMS
+    DBMS_SERVER,
 
     // Data types
     STRING,
@@ -69,13 +61,6 @@ public enum Tokens {
     // Symbols
     LBRACE,  // {
     RBRACE,  // }
-    LPAREN,  // (
-    RPAREN,  // )
-    LBRACKET, // [
-    RBRACKET, // ]
-    COLON,  // :
-    COMMA,  // ,
-    EQUALS,  // =
 
     // Err
     ERROR
