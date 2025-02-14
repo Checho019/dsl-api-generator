@@ -24,40 +24,51 @@ import java_cup.runtime.Symbol;
 
 // Keywords
 "DEFINE"                  { return symbol(sym.DEFINE); }
-"ENTITY"                  { return symbol(sym.ENTITY); }
-"CONTROLLER"              { return symbol(sym.CONTROLLER); }
-"DTO"                     { return symbol(sym.DTO); }
-"VALIDATIONS"             { return symbol(sym.VALIDATIONS); }
-"CONFIGURE"               { return symbol(sym.CONFIGURE); }
-"DATASOURCE"              { return symbol(sym.DATASOURCE); }
+
+/*
+Keywords
+ */
+// Definition
 "AS"                      { return symbol(sym.AS); }
 "FOR"                     { return symbol(sym.FOR); }
-"WITH"                    { return symbol(sym.WITH); }
 "IS"                      { return symbol(sym.IS); }
+
+// Definable
+"ENTITY"                  { return symbol(sym.ENTITY); }
+"CONTROLLER"              { return symbol(sym.CONTROLLER); }
+"CRUD"                    { return symbol(sym.CRUD); }
+"VALIDATIONS"             { return symbol(sym.VALIDATIONS); }
+"DATASOURCE"              { return symbol(sym.DATASOURCE); }
+
+// Constrains
 "NOT"                     { return symbol(sym.NOT); }
 "NULL"                    { return symbol(sym.NULL); }
+"EMPTY"                   { return symbol(sym.EMPTY); }
 "GREATER_THAN"            { return symbol(sym.GREATER_THAN); }
 "LESS_THAN"               { return symbol(sym.LESS_THAN); }
 "EQUALS_TO"               { return symbol(sym.EQUALS_TO); }
 "UNIQUE"                  { return symbol(sym.UNIQUE); }
-"ID"                      { return symbol(sym.ID); }
-"RELATIONSHIP"            { return symbol(sym.RELATIONSHIP); }
-"TO"                      { return symbol(sym.TO); }
-"ONE_TO_ONE"              { return symbol(sym.ONE_TO_ONE); }
-"ONE_TO_MANY"             { return symbol(sym.ONE_TO_MANY); }
-"MANY_TO_MANY"            { return symbol(sym.MANY_TO_MANY); }
-"PATH"                    { return symbol(sym.PATH); }
-"METHODS"                 { return symbol(sym.METHODS); }
-"GET"                     { return symbol(sym.GET); }
-"POST"                    { return symbol(sym.POST); }
-"PUT"                     { return symbol(sym.PUT); }
+
+// Controller
+// CRUD
+"GET_BY_ID"               { return symbol(sym.GET_BY_ID); }
+"GET_ALL"                 { return symbol(sym.GET_ALL); }
+"UPDATE"                  { return symbol(sym.UPDATE); }
 "DELETE"                  { return symbol(sym.DELETE); }
-"EXCLUDE"                 { return symbol(sym.EXCLUDE); }
-"URL"                     { return symbol(sym.URL); }
+"SAVE"                    { return symbol(sym.SAVE); }
+// JPA
+"GET_BY"                  { return symbol(sym.GET_BY); }
+"AND"                     { return symbol(sym.AND); }
+
+// Datasource
+"DBMS"                    { return symbol(sym.DBMS); }
+"IP"                      { return symbol(sym.IP); }
+"DATABASE"                { return symbol(sym.DATABASE); }
 "USERNAME"                { return symbol(sym.USERNAME); }
 "PASSWORD"                { return symbol(sym.PASSWORD); }
-"DRIVER"                  { return symbol(sym.DRIVER); }
 
+// DBMS
+("POSTGRESQL")            { return symbol(sym.DBMS_SERVER); }
 
 // Data type
 "STRING"                  { return symbol(sym.STRING); }
@@ -67,7 +78,11 @@ import java_cup.runtime.Symbol;
 "BOOLEAN"                 { return symbol(sym.BOOLEAN); }
 
 // Identifier
-[a-zA-Z_][a-zA-Z0-9_]*    {return symbol(sym.IDENTIFIER, yytext());}
+[a-zA-Z_][a-zA-Z0-9_]*    { return symbol(sym.IDENTIFIER); }
+
+// Data
+// Identifier
+\b[a-zA-Z_][a-zA-Z0-9_]*\b    {return symbol(sym.IDENTIFIER, yytext());}
 
 // Data
 ("-"?[0-9]+)               { return symbol(sym.NUMBER, yytext()); }
@@ -78,17 +93,10 @@ import java_cup.runtime.Symbol;
 // Symbols
 "{"                       { return symbol(sym.LBRACE); }
 "}"                       { return symbol(sym.RBRACE); }
-"("                       { return symbol(sym.LPAREN); }
-")"                       { return symbol(sym.RPAREN); }
-"["                       { return symbol(sym.LBRACKET); }
-"]"                       { return symbol(sym.RBRACKET); }
-":"                       { return symbol(sym.COLON); }
-","                       { return symbol(sym.COMMA); }
-"="                       { return symbol(sym.EQUALS); }
 
 // Ignore
 [ \t\r\n]+                { /* Spaces */ }
 "//".*                    { /* Comment */ }
 
 // Err
-.                         { return symbol(sym.ERROR, yytext()); }
+.                         { return symbol(sym.ERROR); }
