@@ -109,7 +109,7 @@ DEFINE CONTROLLER FOR User {
 
 // Remove URL and Driver (inference ddbb driver)
 DATASOURCE {
-    SMBD IS POSTGRESQL,
+    DBMS IS POSTGRESQL,
     IP IS "localhost",
     DATABASE IS "mydb",
     USERNAME IS "root",
