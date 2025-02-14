@@ -111,13 +111,13 @@ DEFINE CONTROLLER FOR User {
 
 // Remove URL and Driver (inference ddbb driver)
 CONFIGURE DATASOURCE {
-    SMBD: POSTGRESQL,
-    IP: "localhost",
-    DATABASE: "mydb",
+    SMBD IS POSTGRESQL,
+    IP IS "localhost",
+    DATABASE IS "mydb",
     // Remove
-    URL: "jdbc:mysql://localhost:3306/mydb",
-    USERNAME: "root",
-    PASSWORD: "password",
+    URL "jdbc:mysql://localhost:3306/mydb",
+    USERNAME IS "root",
+    PASSWORD IS "password",
     // Remove
     DRIVER: "com.mysql.cj.jdbc.Driver"
 }
