@@ -20,4 +20,8 @@ public class Token {
     public String toString() {
         return "Lexeme: " + lexeme + " Token: " + token;
     }
+
+    public boolean isError() {
+        return token == Tokens.ERROR;
+    }
 }
