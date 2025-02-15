@@ -1,14 +1,24 @@
 package org.example.generator.models;
 
 public class Attribute {
-    private String attName;
-    private String attType;
+    public String name;
+    public String type;
 
-    public Attribute(String attName, String attType) {
-        this.attName = attName;
-        this.attType = attType;
+    public Attribute(String name, String type) {
+        this.name = name.toLowerCase();
+        this.type = type.toLowerCase();
+        switch (this.type){
+            case "integer":
+                this.type = "int";
+                break;
+            case "string":
+                this.type = "String";
+                break;
+        }
     }
 
-    public String getName() { return attName; }
-    public String getType() { return attType; }
+    @Override
+    public String toString() {
+        return "{ nombre: \"" + name + "\", tipo: \"" + type + "\",}";
+    }
 }

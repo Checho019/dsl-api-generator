@@ -3,14 +3,16 @@ package org.example.generator.models;
 import java.util.List;
 
 public class Entity {
-    private String className;
-    private List<Attribute> attributeList;
+    public String name;
+    public List<Attribute> attributes;
 
-    public Entity(String className, List<Attribute> attributeList) {
-        this.className = className;
-        this.attributeList = attributeList;
+    public Entity(String name, List<Attribute> attributes) {
+        this.name = name.toLowerCase();
+        this.attributes = attributes;
     }
 
-    public String getClassName() { return className; }
-    public List<Attribute> getAttributeList() { return attributeList; }
+    @Override
+    public String toString() {
+        return "{nombreClase='" + name.substring(0, 1).toUpperCase() + name.substring(1) + "', ncl='" + name + "' , atributos=" + attributes + "}";
+    }
 }
