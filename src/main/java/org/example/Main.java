@@ -3,6 +3,7 @@ package org.example;
 import java_cup.runtime.Symbol;
 import org.example.cup.SyntaxFacade;
 import org.example.cup.sym;
+import org.example.generator.CodeGenerator;
 import org.example.lexer.LexerFacade;
 import org.example.lexer.Token;
 
@@ -16,6 +17,18 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         String dslTest = """
+            ENTITY User {
+                user_id AS INTEGER
+                name AS STRING
+                age AS INTEGER
+            }
+            
+            ENTITY User {
+                user_id AS INTEGER
+                name AS STRING
+                age AS INTEGER
+            }
+            
             ENTITY User {
                 user_id AS INTEGER
                 name AS STRING
@@ -67,5 +80,9 @@ public class Main {
             System.out.println("Error in line: " + (s.right + 1) + " Column: " + (s.left + 1) + " Value: " + s.value);
             System.out.println("s.sym = " + sym.terminalNames[s.sym]);
         }
+
+        // Generate code
+        CodeGenerator cg = new CodeGenerator();
+        cg.generate(dslTest);
     }
 }
