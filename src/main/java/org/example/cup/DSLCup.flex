@@ -21,10 +21,6 @@ import java_cup.runtime.Symbol;
 %}
 
 %%
-
-// Keywords
-"DEFINE"                  { return symbol(sym.DEFINE); }
-
 /*
 Keywords
  */

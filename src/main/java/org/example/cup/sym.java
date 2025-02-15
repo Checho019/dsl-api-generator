@@ -8,97 +8,78 @@ package org.example.cup;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int RELATIONSHIP = 10;
-  public static final int STRING_LITERAL = 43;
-  public static final int LBRACKET = 48;
-  public static final int WITH = 30;
-  public static final int MANY_TO_MANY = 22;
-  public static final int EQUALS = 52;
-  public static final int PUT = 28;
-  public static final int PATH = 24;
-  public static final int METHODS = 25;
-  public static final int INTEGER = 37;
-  public static final int LPAREN = 46;
-  public static final int ONE_TO_MANY = 21;
-  public static final int FOR = 4;
-  public static final int DRIVER = 35;
-  public static final int DELETE = 29;
-  public static final int GREATER_THAN = 15;
-  public static final int RPAREN = 47;
-  public static final int DEFINE = 2;
-  public static final int NOT = 13;
-  public static final int IS = 12;
-  public static final int COMMA = 51;
-  public static final int VALIDATIONS = 8;
-  public static final int GET = 26;
-  public static final int ID = 19;
-  public static final int BOOLEAN = 39;
+  public static final int STRING_LITERAL = 37;
+  public static final int EMPTY = 12;
+  public static final int INTEGER = 31;
+  public static final int UPDATE = 19;
+  public static final int DBMS_SERVER = 25;
+  public static final int FOR = 3;
+  public static final int DELETE = 20;
+  public static final int GREATER_THAN = 13;
+  public static final int DBMS = 24;
+  public static final int NOT = 10;
+  public static final int IS = 4;
+  public static final int AND = 23;
+  public static final int IP = 26;
+  public static final int VALIDATIONS = 7;
   public static final int EOF = 0;
-  public static final int RBRACKET = 49;
-  public static final int EQUALS_TO = 17;
+  public static final int BOOLEAN = 33;
+  public static final int EQUALS_TO = 15;
   public static final int error = 1;
-  public static final int NULL = 14;
-  public static final int DATASOURCE = 11;
-  public static final int NUMBER = 42;
+  public static final int CRUD = 8;
+  public static final int NULL = 11;
+  public static final int DATASOURCE = 9;
+  public static final int NUMBER = 36;
   public static final int CONTROLLER = 6;
-  public static final int URL = 32;
-  public static final int PASSWORD = 34;
-  public static final int ERROR = 53;
-  public static final int UNIQUE = 18;
-  public static final int ONE_TO_ONE = 20;
-  public static final int USERNAME = 33;
-  public static final int EXCLUDE = 31;
-  public static final int COLON = 50;
-  public static final int LBRACE = 44;
-  public static final int POST = 27;
-  public static final int TO = 23;
-  public static final int FLOAT = 40;
-  public static final int RBRACE = 45;
-  public static final int LONG = 38;
-  public static final int STRING = 36;
-  public static final int CONFIGURE = 9;
-  public static final int DTO = 7;
-  public static final int AS = 3;
+  public static final int PASSWORD = 29;
+  public static final int ERROR = 40;
+  public static final int UNIQUE = 16;
+  public static final int GET_ALL = 18;
+  public static final int USERNAME = 28;
+  public static final int LBRACE = 38;
+  public static final int GET_BY = 22;
+  public static final int SAVE = 21;
+  public static final int FLOAT = 34;
+  public static final int RBRACE = 39;
+  public static final int DATABASE = 27;
+  public static final int GET_BY_ID = 17;
+  public static final int LONG = 32;
+  public static final int STRING = 30;
+  public static final int AS = 2;
   public static final int ENTITY = 5;
-  public static final int LESS_THAN = 16;
-  public static final int IDENTIFIER = 41;
+  public static final int LESS_THAN = 14;
+  public static final int IDENTIFIER = 35;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "DEFINE",
   "AS",
   "FOR",
+  "IS",
   "ENTITY",
   "CONTROLLER",
-  "DTO",
   "VALIDATIONS",
-  "CONFIGURE",
-  "RELATIONSHIP",
+  "CRUD",
   "DATASOURCE",
-  "IS",
   "NOT",
   "NULL",
+  "EMPTY",
   "GREATER_THAN",
   "LESS_THAN",
   "EQUALS_TO",
   "UNIQUE",
-  "ID",
-  "ONE_TO_ONE",
-  "ONE_TO_MANY",
-  "MANY_TO_MANY",
-  "TO",
-  "PATH",
-  "METHODS",
-  "GET",
-  "POST",
-  "PUT",
+  "GET_BY_ID",
+  "GET_ALL",
+  "UPDATE",
   "DELETE",
-  "WITH",
-  "EXCLUDE",
-  "URL",
+  "SAVE",
+  "GET_BY",
+  "AND",
+  "DBMS",
+  "DBMS_SERVER",
+  "IP",
+  "DATABASE",
   "USERNAME",
   "PASSWORD",
-  "DRIVER",
   "STRING",
   "INTEGER",
   "LONG",
@@ -109,13 +90,6 @@ public class sym {
   "STRING_LITERAL",
   "LBRACE",
   "RBRACE",
-  "LPAREN",
-  "RPAREN",
-  "LBRACKET",
-  "RBRACKET",
-  "COLON",
-  "COMMA",
-  "EQUALS",
   "ERROR"
   };
 }

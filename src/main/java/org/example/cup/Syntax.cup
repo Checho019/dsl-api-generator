@@ -17,24 +17,23 @@ parser code
     }
 :};
 
-terminal DEFINE, AS, FOR,                                                           // Definition
-         ENTITY, CONTROLLER, DTO, VALIDATIONS, CONFIGURE, RELATIONSHIP,             // Definable
-         DATASOURCE,                                                                // Configurable
-         IS, NOT, NULL, GREATER_THAN, LESS_THAN, EQUALS_TO, UNIQUE, ID,             // Constrains
-         ONE_TO_ONE, ONE_TO_MANY, MANY_TO_MANY, TO,                                 // Relationship
-         PATH, METHODS, GET, POST, PUT, DELETE,                                     // Controller Definition
-         WITH, EXCLUDE,                                                             // DTO Definition
-         URL, USERNAME, PASSWORD, DRIVER,                                           // Datasource Configuration
+terminal AS, FOR, IS,                                                               // Definition
+         ENTITY, CONTROLLER, VALIDATIONS, CRUD, DATASOURCE,                         // Definable
+         NOT, NULL, EMPTY, GREATER_THAN, LESS_THAN, EQUALS_TO, UNIQUE,              // Constrains
+         GET_BY_ID, GET_ALL, UPDATE, DELETE, SAVE,                                  // Basic CRUD actions
+         GET_BY, AND,                                                               // JPA Like Controller actions
+         DBMS, DBMS_SERVER, IP, DATABASE, USERNAME, PASSWORD,                       // Datasource Configuration
          STRING, INTEGER, LONG, BOOLEAN, FLOAT,                                     // Data types
          IDENTIFIER,                                                                // Identifier
          NUMBER, STRING_LITERAL,                                                    // Data
-         LBRACE, RBRACE, LPAREN, RPAREN, LBRACKET, RBRACKET, COLON, COMMA, EQUALS, ERROR;  // Symbols
+         LBRACE, RBRACE, ERROR;                                                     // Symbols
 
 non terminal Program;
-non terminal Definition, DefinitionList, EntityDef, RelationshipDef, ValidationDef, ControllerDef, ConfigureDef;
-non terminal AttributeDef, ValidationExpr, ControllerExpr, ControllerPath, ControllerMethods, VerbList, Configurable;
-non terminal DataType, Constrain, RelationshipType, Comparation, HTTPVerb, DatasourceConf;
-non terminal DatasourceURL, DatasourceUsername, DatasourcePassword, DatasourceDriver;
+non terminal Definition, DefinitionList, EntityDef, ValidationDef, ControllerDef, DatasourceDef;
+non terminal AttributeDef, ValidationExpr, ControllerExpr, DatasourceConf;
+non terminal DataType, PreConstrain, Constrain, Comparation;
+non terminal ControllerAction, Query;
+non terminal DSdbms, DSip, DSdatabase, DSusername, DSpassword;
 
 // Begin
 start with Program;
@@ -42,36 +41,32 @@ start with Program;
 Program ::= DefinitionList;
 
 DefinitionList ::= Definition | Definition DefinitionList;
-Definition ::= EntityDef | RelationshipDef | ValidationDef | ControllerDef | ConfigureDef;
+Definition ::= EntityDef | ValidationDef | ControllerDef | DatasourceDef;
 
 // Entity Definition
-EntityDef ::= DEFINE IDENTIFIER AS ENTITY LBRACE AttributeDef RBRACE;
-AttributeDef ::= IDENTIFIER AS DataType | IDENTIFIER AS DataType COMMA AttributeDef;
+EntityDef ::= ENTITY IDENTIFIER LBRACE AttributeDef RBRACE;
+AttributeDef ::= IDENTIFIER AS DataType | IDENTIFIER AS DataType AttributeDef;
 DataType ::= STRING | INTEGER | LONG | BOOLEAN| FLOAT;
 
-// Relationship Definition
-RelationshipDef ::= DEFINE RELATIONSHIP IDENTIFIER TO IDENTIFIER IS RelationshipType;
-RelationshipType ::= ONE_TO_ONE | ONE_TO_MANY | MANY_TO_MANY;
-
 // Validations
-ValidationDef ::= DEFINE VALIDATIONS FOR IDENTIFIER LBRACE ValidationExpr RBRACE;
-ValidationExpr ::= IDENTIFIER IS Constrain | IDENTIFIER IS Constrain COMMA ValidationExpr;
-Constrain ::= Comparation | ID | NULL | UNIQUE | NOT Constrain;
-Comparation ::= GREATER_THAN NUMBER | LESS_THAN NUMBER | EQUALS_TO NUMBER;
+ValidationDef ::= VALIDATIONS FOR IDENTIFIER LBRACE ValidationExpr RBRACE;
+ValidationExpr ::= IDENTIFIER IS PreConstrain | IDENTIFIER IS PreConstrain ValidationExpr;
+PreConstrain ::= Constrain | NOT Constrain | UNIQUE;
+Constrain ::= Comparation NUMBER | NULL | EMPTY;
+Comparation ::= GREATER_THAN | LESS_THAN | EQUALS_TO;
 
 // Controller Definition
-ControllerDef ::= DEFINE CONTROLLER FOR IDENTIFIER LBRACE ControllerExpr RBRACE;
-ControllerExpr ::= ControllerPath COMMA ControllerMethods;
-ControllerPath ::= PATH COLON STRING_LITERAL;
-ControllerMethods ::= METHODS COLON LBRACKET VerbList RBRACKET;
-VerbList ::= HTTPVerb | HTTPVerb COMMA VerbList;
-HTTPVerb ::= GET | POST | PUT | DELETE;
+ControllerDef ::= CONTROLLER FOR IDENTIFIER LBRACE ControllerExpr RBRACE |
+                  CRUD FOR IDENTIFIER;
+ControllerExpr ::= ControllerAction | ControllerAction ControllerExpr;
+ControllerAction ::= GET_ALL | GET_BY_ID | UPDATE | SAVE | DELETE | GET_BY Query;
+Query ::= IDENTIFIER | IDENTIFIER AND Query;
 
 // Configuration
-ConfigureDef ::= CONFIGURE Configurable;
-Configurable ::= DATASOURCE LBRACE DatasourceConf RBRACE;
-DatasourceConf ::= DatasourceURL COMMA DatasourceUsername COMMA DatasourcePassword COMMA DatasourceDriver;
-DatasourceURL ::= URL COLON STRING_LITERAL;
-DatasourceUsername ::= USERNAME COLON STRING_LITERAL;
-DatasourcePassword ::= PASSWORD COLON STRING_LITERAL;
-DatasourceDriver ::= DRIVER COLON STRING_LITERAL;
+DatasourceDef ::= DATASOURCE LBRACE DatasourceConf RBRACE;
+DatasourceConf ::= DSdbms DSip DSdatabase DSusername DSpassword;
+DSdbms ::= DBMS IS DBMS_SERVER;
+DSip ::= IP IS STRING_LITERAL;
+DSdatabase ::= DATABASE IS STRING_LITERAL;
+DSusername ::= USERNAME IS STRING_LITERAL;
+DSpassword ::= PASSWORD IS STRING_LITERAL;
