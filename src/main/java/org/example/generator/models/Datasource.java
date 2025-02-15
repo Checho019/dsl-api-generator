@@ -1,5 +1,7 @@
 package org.example.generator.models;
 
+import java.util.Locale;
+
 public class Datasource {
     public String dbms;
     public String ip;
@@ -8,8 +10,8 @@ public class Datasource {
     public String password;
 
     public Datasource(String dbms, String ip, String database, String username, String password) {
-        this.dbms = dbms;
-        this.ip = ip;
+        this.dbms = dbms.toLowerCase();
+        this.ip = ip.toLowerCase();
         this.database = database;
         this.username = username;
         this.password = password;
@@ -17,6 +19,6 @@ public class Datasource {
 
     @Override
     public String toString() {
-        return "{baseDeDatos='" + dbms + "', host='" + ip + "', nombre='" + database + "', usuario='" + username + "', pass='" + password + "', puerto='5432'}";
+        return "'database':{'baseDeDatos':'" + dbms + "', 'host':'" + ip + "', 'nombre':'" + database + "', 'usuario':'" + username + "', 'pass':'" + password + "', 'puerto':5432},";
     }
 }

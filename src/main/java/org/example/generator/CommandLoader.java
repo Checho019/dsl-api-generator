@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 
 public class CommandLoader {
     public void createProject(String rawData) throws Exception {
-        ProcessBuilder processBuilder = new ProcessBuilder("ls","-l");
+        ProcessBuilder processBuilder = new ProcessBuilder("yo", "proyecto","--data=\""+rawData+"´\"");
         Process process = processBuilder.start();
 
         BufferedReader lector = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -15,6 +15,6 @@ public class CommandLoader {
         }
 
         int codigoSalida = process.waitFor();
-        System.out.println("Código de salida: " + codigoSalida);
+        System.out.println(codigoSalida);
     }
 }

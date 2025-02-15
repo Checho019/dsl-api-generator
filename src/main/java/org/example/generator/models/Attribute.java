@@ -19,6 +19,6 @@ public class Attribute {
 
     @Override
     public String toString() {
-        return "{ nombre: \"" + name + "\", tipo: \"" + type + "\",}";
+        return "{ 'nombre': '" + name + "', 'tipo': '" + type + "'}";
     }
 }

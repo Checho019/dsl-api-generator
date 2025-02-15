@@ -13,6 +13,6 @@ public class Entity {
 
     @Override
     public String toString() {
-        return "{nombreClase='" + name.substring(0, 1).toUpperCase() + name.substring(1) + "', ncl='" + name + "' , atributos=" + attributes + "}";
+        return "{'nombreClase':'" + name.substring(0, 1).toUpperCase() + name.substring(1) + "', 'ncl':'" + name + "' , 'atributos':" + attributes + "}";
     }
 }

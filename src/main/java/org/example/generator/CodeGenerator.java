@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class CodeGenerator {
     public void generate(String dslTest) throws Exception {
@@ -94,19 +95,16 @@ public class CodeGenerator {
         }
 
         // Show results
-        System.out.println("\n Entidades:");
-        entities.forEach(System.out::println);
-
-        System.out.println("\n Validaciones:");
-        validations.forEach(System.out::println);
-
-        System.out.println("\n Controladores:");
-        controllers.forEach(System.out::println);
-
-        System.out.println("\n Datasource:");
-        System.out.println(datasource);
+        String strEntities = entities.stream().map(Entity::toString).collect(Collectors.joining(","));
+        System.out.println(strEntities);
 
         CommandLoader commandLoader = new CommandLoader();
+        String appCreation = "{'appinfo':{'nombre': 'TestAPP','descripcion': 'TestAPP','licencia': 'MIT','version': '1',},";
+        appCreation += datasource;
+        appCreation += "'modeloDeDatos':{ 'clases': [" + strEntities + "]}}";
+
+        System.out.println(appCreation);
+
         commandLoader.createProject("xd");
     }
 }
