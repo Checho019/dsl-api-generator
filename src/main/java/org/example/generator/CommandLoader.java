@@ -5,8 +5,8 @@ import java.io.InputStreamReader;
 
 public class CommandLoader {
     public void createProject(String rawData) throws Exception {
-        ProcessBuilder processBuilder = new ProcessBuilder("yo", "proyecto","--data=\""+rawData+"´\"");
-        Process process = processBuilder.start();
+        ProcessBuilder pb = new ProcessBuilder("bash", "-c", "yo --data='" + rawData + "'");
+        Process process = pb.start();
 
         BufferedReader lector = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String linea;

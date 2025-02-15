@@ -96,12 +96,10 @@ public class CodeGenerator {
 
         // Show results
         String strEntities = entities.stream().map(Entity::toString).collect(Collectors.joining(","));
-        System.out.println(strEntities);
-
         CommandLoader commandLoader = new CommandLoader();
-        String appCreation = "{'appinfo':{'nombre': 'TestAPP','descripcion': 'TestAPP','licencia': 'MIT','version': '1',},";
+        String appCreation = "{\\\"appInfo\\\":{\\\"nombre\\\": \\\"TestAPP\\\",\\\"descripcion\\\": \\\"TestAPP\\\",\\\"licencia\\\": \\\"MIT\\\",\\\"version\\\": \\\"1\\\"},";
         appCreation += datasource;
-        appCreation += "'modeloDeDatos':{ 'clases': [" + strEntities + "]}}";
+        appCreation += "\\\"modeloDeDatos\\\":{ \\\"clases\\\": [" + strEntities + "]}}";
 
         System.out.println(appCreation);
 

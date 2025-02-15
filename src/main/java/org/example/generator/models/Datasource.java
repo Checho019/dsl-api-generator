@@ -19,6 +19,6 @@ public class Datasource {
 
     @Override
     public String toString() {
-        return "'database':{'baseDeDatos':'" + dbms + "', 'host':'" + ip + "', 'nombre':'" + database + "', 'usuario':'" + username + "', 'pass':'" + password + "', 'puerto':5432},";
+        return "\\\"database\\\":{\\\"baseDeDatos\\\":\\\"" + dbms + "\\\", \\\"host\\\":\\\"" + ip + "\\\", \\\"nombre\\\":\\\"" + database + "\\\", \\\"usuario\\\":\\\"" + username + "\\\", \\\"pass\\\":\\\"" + password + "\\\", \\\"puerto\\\":5432},";
     }
 }

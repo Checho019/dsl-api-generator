@@ -22,17 +22,11 @@ public class Main {
                 name AS STRING
                 age AS INTEGER
             }
-            
-            ENTITY User {
-                user_id AS INTEGER
+        
+            ENTITY Pet {
                 name AS STRING
                 age AS INTEGER
-            }
-            
-            ENTITY User {
-                user_id AS INTEGER
-                name AS STRING
-                age AS INTEGER
+                kind AS STRING
             }
 
             VALIDATIONS FOR User {
