@@ -6,6 +6,9 @@
 package org.example.cup;
 
 import java_cup.runtime.Symbol;
+import java.util.List;
+import java.util.ArrayList;
+import org.example.generator.models.*;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -31,9 +34,9 @@ public class Syntax extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\057\000\002\002\004\000\002\002\003\000\002\004" +
-    "\003\000\002\004\004\000\002\003\003\000\002\003\003" +
-    "\000\002\003\003\000\002\003\003\000\002\005\007\000" +
+    "\000\057\000\002\002\004\000\002\002\003\000\002\005" +
+    "\003\000\002\005\004\000\002\003\003\000\002\003\003" +
+    "\000\002\003\003\000\002\003\003\000\002\004\007\000" +
     "\002\011\005\000\002\011\006\000\002\015\003\000\002" +
     "\015\003\000\002\015\003\000\002\015\003\000\002\015" +
     "\003\000\002\006\010\000\002\012\005\000\002\012\006" +
@@ -124,9 +127,9 @@ public class Syntax extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\132\000\020\002\005\003\004\004\014\005\011\006" +
+    "\000\132\000\020\002\005\003\004\004\011\005\014\006" +
     "\012\007\010\010\016\001\001\000\002\001\001\000\016" +
-    "\003\004\004\116\005\011\006\012\007\010\010\016\001" +
+    "\003\004\004\011\005\116\006\012\007\010\010\016\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
@@ -197,13 +200,11 @@ public class Syntax extends java_cup.runtime.lr_parser {
 
 
     private Symbol s;
-
     @Override
     public void syntax_error(Symbol s) {
         this.s = s;
         System.err.println("Syntax error at line " + s.left + ", column " + s.right + ": " + s.value);
     }
-
     public Symbol getSymbol() {
         return this.s;
     }
@@ -261,7 +262,7 @@ class CUP$Syntax$actions {
             {
               Object RESULT =null;
 
-              CUP$Syntax$result = parser.getSymbolFactory().newSymbol("DefinitionList",2, ((java_cup.runtime.Symbol)CUP$Syntax$stack.peek()), ((java_cup.runtime.Symbol)CUP$Syntax$stack.peek()), RESULT);
+              CUP$Syntax$result = parser.getSymbolFactory().newSymbol("DefinitionList",3, ((java_cup.runtime.Symbol)CUP$Syntax$stack.peek()), ((java_cup.runtime.Symbol)CUP$Syntax$stack.peek()), RESULT);
             }
           return CUP$Syntax$result;
 
@@ -270,7 +271,7 @@ class CUP$Syntax$actions {
             {
               Object RESULT =null;
 
-              CUP$Syntax$result = parser.getSymbolFactory().newSymbol("DefinitionList",2, ((java_cup.runtime.Symbol)CUP$Syntax$stack.elementAt(CUP$Syntax$top-1)), ((java_cup.runtime.Symbol)CUP$Syntax$stack.peek()), RESULT);
+              CUP$Syntax$result = parser.getSymbolFactory().newSymbol("DefinitionList",3, ((java_cup.runtime.Symbol)CUP$Syntax$stack.elementAt(CUP$Syntax$top-1)), ((java_cup.runtime.Symbol)CUP$Syntax$stack.peek()), RESULT);
             }
           return CUP$Syntax$result;
 
@@ -315,7 +316,7 @@ class CUP$Syntax$actions {
             {
               Object RESULT =null;
 
-              CUP$Syntax$result = parser.getSymbolFactory().newSymbol("EntityDef",3, ((java_cup.runtime.Symbol)CUP$Syntax$stack.elementAt(CUP$Syntax$top-4)), ((java_cup.runtime.Symbol)CUP$Syntax$stack.peek()), RESULT);
+              CUP$Syntax$result = parser.getSymbolFactory().newSymbol("EntityDef",2, ((java_cup.runtime.Symbol)CUP$Syntax$stack.elementAt(CUP$Syntax$top-4)), ((java_cup.runtime.Symbol)CUP$Syntax$stack.peek()), RESULT);
             }
           return CUP$Syntax$result;
 

@@ -1,17 +1,18 @@
 package org.example.cup;
 
 import java_cup.runtime.Symbol;
+import java.util.List;
+import java.util.ArrayList;
+import org.example.generator.models.*;
 
 parser code
 {:
     private Symbol s;
-
     @Override
     public void syntax_error(Symbol s) {
         this.s = s;
         System.err.println("Syntax error at line " + s.left + ", column " + s.right + ": " + s.value);
     }
-
     public Symbol getSymbol() {
         return this.s;
     }
@@ -24,12 +25,12 @@ terminal AS, FOR, IS,                                                           
          GET_BY, AND,                                                               // JPA Like Controller actions
          DBMS, DBMS_SERVER, IP, DATABASE, USERNAME, PASSWORD,                       // Datasource Configuration
          STRING, INTEGER, LONG, BOOLEAN, FLOAT,                                     // Data types
-         IDENTIFIER,                                                                // Identifier
+         IDENTIFIER,                                         // Identifier
          NUMBER, STRING_LITERAL,                                                    // Data
          LBRACE, RBRACE, ERROR;                                                     // Symbols
 
 non terminal Program;
-non terminal Definition, DefinitionList, EntityDef, ValidationDef, ControllerDef, DatasourceDef;
+non terminal Definition, EntityDef, DefinitionList, ValidationDef, ControllerDef, DatasourceDef;
 non terminal AttributeDef, ValidationExpr, ControllerExpr, DatasourceConf;
 non terminal DataType, PreConstrain, Constrain, Comparation;
 non terminal ControllerAction, Query;
@@ -45,6 +46,7 @@ Definition ::= EntityDef | ValidationDef | ControllerDef | DatasourceDef;
 
 // Entity Definition
 EntityDef ::= ENTITY IDENTIFIER LBRACE AttributeDef RBRACE;
+
 AttributeDef ::= IDENTIFIER AS DataType | IDENTIFIER AS DataType AttributeDef;
 DataType ::= STRING | INTEGER | LONG | BOOLEAN| FLOAT;
 

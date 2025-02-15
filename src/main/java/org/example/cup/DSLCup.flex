@@ -73,12 +73,9 @@ Keywords
 "FLOAT"                   { return symbol(sym.FLOAT); }
 "BOOLEAN"                 { return symbol(sym.BOOLEAN); }
 
-// Identifier
-[a-zA-Z_][a-zA-Z0-9_]*    { return symbol(sym.IDENTIFIER); }
-
 // Data
 // Identifier
-\b[a-zA-Z_][a-zA-Z0-9_]*\b    {return symbol(sym.IDENTIFIER, yytext());}
+[a-zA-Z_][a-zA-Z0-9_]*    {return symbol(sym.IDENTIFIER, yytext());}
 
 // Data
 ("-"?[0-9]+)               { return symbol(sym.NUMBER, yytext()); }
