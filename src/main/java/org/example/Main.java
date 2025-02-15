@@ -22,19 +22,10 @@ public class Main {
                 age AS INTEGER
             }
 
-            // DEFINE RELATIONSHIP User TO Pet IS ONE_TO_MANY
-            // Not implemented yet
-
             VALIDATIONS FOR User {
-                user_id IS UNIQUE,
-                name IS NOT NULL,
-                age IS GREATER_THAN 15
-            }
-
-            VALIDATIONS FOR Pet {
-                pet_id IS ID
+                user_id IS UNIQUE
                 name IS NOT NULL
-                animal IS NOT NULL
+                age IS GREATER_THAN 15
             }
 
             // CRUD FOR User
@@ -71,6 +62,7 @@ public class Main {
             syntaxFacade.parse(dslTest);
             System.out.println("Syntax test passed.");
         } catch (Exception e) {
+            System.out.println("Syntax test failed.");
             Symbol s = syntaxFacade.syntax.getSymbol();
             System.out.println("Error in line: " + (s.right + 1) + " Column: " + (s.left + 1) + " Value: " + s.value);
             System.out.println("s.sym = " + sym.terminalNames[s.sym]);
