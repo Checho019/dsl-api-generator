@@ -51,7 +51,7 @@ public class Main {
             DATASOURCE {
                 DBMS IS POSTGRESQL
                 IP IS "localhost"
-                DATABASE IS "mydb"
+                DATABASE IS "db2"
                 USERNAME IS "root"
                 PASSWORD IS "password"
             }
